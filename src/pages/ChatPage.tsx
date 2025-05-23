@@ -47,7 +47,8 @@ const ChatPage: React.FC = () => {
         <InputChat onSend={handleNewMessage} className="absolute bottom-0 left-1/2 transform -translate-x-1/2" />
       </div>
     ) : (
-      <div className='h-full w-full relative flex items-center justify-center'>
+      <div className='h-full w-full relative flex flex-col items-center justify-center gap-5'>
+        <p className='text-4xl'>What can I help with?</p>
         {/* Input Prompt */}
         <InputChat onSend={handleNewMessage} />
       </div>

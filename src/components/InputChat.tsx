@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface InputChatProps {
   onSend: (message: string) => void;
@@ -7,6 +8,7 @@ interface InputChatProps {
 }
 
 const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
+  const {t} = useTranslation();
   const [message, setMessage] = useState('');
   const [isThinking, setIsThinking] = useState(false);
 
@@ -29,7 +31,7 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           autoFocus
-          placeholder="Type your prompt..."
+          placeholder={t('type_your_prompt')}
           className="w-full pb-2 mx-2 border-none border-gray-300 focus:outline-none bg-white"
         />
       </form>
@@ -37,7 +39,7 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
         <button
           type="button"
           onClick={handleThinkToggle}
-          className={`px-2 py-1 rounded-3xl transition flex flex-row gap-1 items-center cursor-pointer ${
+          className={`px-2 pr-3 py-1 rounded-3xl transition flex flex-row gap-1 items-center cursor-pointer ${
             isThinking
               ? 'bg-blue-100 border-1 border-blue-300 text-blue-600 hover:bg-blue-200'
               : 'bg-white border-1 border-gray-300 text-gray-500 hover:bg-gray-200'
@@ -45,7 +47,7 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
           aria-pressed={isThinking}
         >
           <Sparkles className="w-5 h-5" />
-          Think
+          {t('think')}
         </button>
       </div>
     </div>

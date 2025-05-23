@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { SquarePen } from 'lucide-react';
 import ChatOption from './ChatOption';
+import { useTranslation } from 'react-i18next';
 
 const chats = [
   {
@@ -14,12 +15,14 @@ const chats = [
 ]
 
 export default function Sidebar() {
+  const {t} = useTranslation();
+
   return (
     <nav className="w-60 p-4 pt-3 border-r-1 border-gray-200 h-full">
       <ul className="flex flex-col gap-1">
         <li>
           <NavLink 
-            to="/"
+            to="/chat"
             className={({ isActive }) => 
               `flex gap-2 ${
                 isActive
@@ -29,7 +32,7 @@ export default function Sidebar() {
             }
           >
             <SquarePen />
-            New Chat
+            {t('new_chat')}
           </NavLink>
         </li>
         <hr className="border-gray-200 my-2"/>
