@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import InputChat from '../components/InputChat';
 import ChatMessage from '../components/ChatMessage';
+import { useTranslation } from 'react-i18next';
 
 const ChatPage: React.FC = () => {
+  const { t } = useTranslation();
   const { chat_id } = useParams();
 
   const [messages, setMessages] = useState([
@@ -48,7 +50,7 @@ const ChatPage: React.FC = () => {
       </div>
     ) : (
       <div className='h-full w-full relative flex flex-col items-center justify-center gap-5'>
-        <p className='text-4xl'>What can I help with?</p>
+        <p className='text-4xl'>{t('what_can_i_help_with')}</p>
         {/* Input Prompt */}
         <InputChat onSend={handleNewMessage} />
       </div>

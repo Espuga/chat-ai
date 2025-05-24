@@ -2,5 +2,7 @@
     "hi": "Hi",
     "type_your_prompt": "Type your prompt...",
     "think": "Think",
-    "new_chat": "New Chat"
+    "new_chat": "New Chat",
+    "what_can_i_help_with": "What can I help with?",
+    "documentation": "Documentation"
 } 

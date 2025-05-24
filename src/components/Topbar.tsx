@@ -1,4 +1,4 @@
-import { User, Languages, Check } from "lucide-react";
+import { User, Languages, Check, LogOut } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import { useState } from "react";
@@ -12,11 +12,16 @@ export default function Topbar() {
   const { t } = useTranslation();
   const [showLangMenu, setShowLangMenu] = useState(false);
   const currentLang = i18n.language;
+  const [showSessionMenu, setShowSessionMenu] = useState(false);
 
-  const changeLanguage = (lang: string) => {
+  const changeLanguage = (lang: string): void => {
     i18n.changeLanguage(lang);
     setShowLangMenu(false);
   };
+
+  const logout = (): void => {
+
+  }
 
   return (
     <header className="p-5 flex flex-row justify-between border-b-1 border-gray-200">
@@ -27,13 +32,33 @@ export default function Topbar() {
       <div className="flex flex-row gap-2 items-center">
         <p className="text-xl">{t('hi')} Marc!</p>
         
-        <User size={38} className="p-2 rounded-3xl hover:bg-gray-200 hover:cursor-pointer" />
+        {/* User Session */}
+        <div className="relative">
+          <User 
+            size={38} 
+            onClick={() => {setShowSessionMenu(!showSessionMenu); setShowLangMenu(false);}}
+            className="p-2 rounded-3xl hover:bg-gray-200 hover:cursor-pointer" 
+          />
+          {showSessionMenu && (
+            <div className="absolute right-0 mt-2 w-36 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+              <button
+                onClick={() => logout()}
+                className={`w-full pl-2 pr-4 py-2 text-left hover:bg-gray-100 hover:cursor-pointer flex justify-between items-center`}
+              >
+                <div className="flex flex-row gap-2">
+                  <LogOut size={24} />
+                  Logout
+                </div>
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Translations */}
         <div className="relative">
           <Languages
             size={38}
-            onClick={() => setShowLangMenu(!showLangMenu)}
+            onClick={() => {setShowLangMenu(!showLangMenu); setShowSessionMenu(false);}}
             className="p-2 rounded-3xl hover:bg-gray-200 cursor-pointer"
           />
           {showLangMenu && (
@@ -42,7 +67,7 @@ export default function Topbar() {
                 <button
                   key={code}
                   onClick={() => changeLanguage(code)}
-                  className={`w-full pl-2 pr-4 py-2 text-left hover:bg-gray-100 flex justify-between items-center ${
+                  className={`w-full pl-2 pr-4 py-2 text-left hover:bg-gray-100 hover:cursor-pointer flex justify-between items-center ${
                     currentLang === code ? "font-semibold text-blue-600" : ""
                   }`}
                 >

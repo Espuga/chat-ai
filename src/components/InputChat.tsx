@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles } from 'lucide-react';
+import { Database, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface InputChatProps {
@@ -11,6 +11,7 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
   const {t} = useTranslation();
   const [message, setMessage] = useState('');
   const [isThinking, setIsThinking] = useState(false);
+  const [isDoc, setIsDoc] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +22,10 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
   
   const handleThinkToggle = () => {
     setIsThinking((prev) => !prev);
+  };
+  
+  const handleDocToggle = () => {
+    setIsDoc((prev) => !prev);
   };
 
   return (
@@ -35,7 +40,7 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
           className="w-full pb-2 mx-2 border-none border-gray-300 focus:outline-none bg-white"
         />
       </form>
-      <div className='flex flex-row'>
+      <div className='flex flex-row gap-2'>
         <button
           type="button"
           onClick={handleThinkToggle}
@@ -48,6 +53,19 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
         >
           <Sparkles className="w-5 h-5" />
           {t('think')}
+        </button>
+        <button
+          type="button"
+          onClick={handleDocToggle}
+          className={`px-2 pr-3 py-1 rounded-3xl transition flex flex-row gap-1 items-center cursor-pointer ${
+            isDoc
+              ? 'bg-blue-100 border-1 border-blue-300 text-blue-600 hover:bg-blue-200'
+              : 'bg-white border-1 border-gray-300 text-gray-500 hover:bg-gray-200'
+          }`}
+          aria-pressed={isDoc}
+        >
+          <Database className="w-5 h-5" />
+          {t('documentation')}
         </button>
       </div>
     </div>
