@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate  } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 import ChatPage from './pages/ChatPage';
+import './App.css';
 
 function App() {
 

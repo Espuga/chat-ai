@@ -4,5 +4,7 @@
     "think": "Think",
     "new_chat": "New Chat",
     "what_can_i_help_with": "What can I help with?",
-    "documentation": "Documentation"
+    "documentation": "Documentation",
+    "login": "Log in",
+    "logout": "Logout"
 } 

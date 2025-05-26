@@ -4,5 +4,7 @@
     "think": "Pensar",
     "new_chat": "Crear Xat",
     "what_can_i_help_with": "En que et puc ajudar?",
-    "documentation": "Documentació"
+    "documentation": "Documentació",
+    "login": "Iniciar Sessió",
+    "logout": "Tancar Sessió"
 }
