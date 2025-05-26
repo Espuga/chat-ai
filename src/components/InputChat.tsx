@@ -53,7 +53,7 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
           autoFocus
           id='prompt-input'
           placeholder={t('type_your_prompt')}
-          className="w-full pb-2 mx-2 border-none border-gray-300 focus:outline-none bg-white resize-none"
+          className="w-full pb-2 mx-2 pr-3 border-none border-gray-300 focus:outline-none bg-white resize-none"
         />
       </form>
       <div className='flex flex-row gap-2'>
