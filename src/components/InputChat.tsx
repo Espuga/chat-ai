@@ -49,6 +49,12 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
           onChange={(e) => {
             setMessage(e.target.value);
           }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              handleSubmit(e);
+            }
+          }}
           rows={Math.min(3, rowCount)}
           autoFocus
           id='prompt-input'

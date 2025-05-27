@@ -1,10 +1,19 @@
 {
-    "hi": "Hola",
-    "type_your_prompt": "Escriu el prompt...",
-    "think": "Pensar",
-    "new_chat": "Crear Xat",
-    "what_can_i_help_with": "En que et puc ajudar?",
-    "documentation": "Documentació",
-    "login": "Iniciar Sessió",
-    "logout": "Tancar Sessió"
+  "hi": "Hola",
+  "type_your_prompt": "Escriu el prompt...",
+  "think": "Pensar",
+  "new_chat": "Crear Xat",
+  "what_can_i_help_with": "En que et puc ajudar?",
+  "documentation": "Documentació",
+  "login": "Iniciar Sessió",
+  "logout": "Tancar Sessió",
+  "register": "Registrar-se",
+  "name": "Nom",
+  "email": "Correu",
+  "password": "Contrassenya",
+  "unauthorized": "Nom d'usuari o contrasenya no vàlids.",
+  "login_no_ok": "S'ha produït un error en iniciar sessió.",
+  "login_ok": "Sessió iniciada correctament.",
+  "register_ok": "Registre completat correctament.",
+  "register_no_ok": "El registre ha fallat. Torna-ho a intentar més tard."
 }
