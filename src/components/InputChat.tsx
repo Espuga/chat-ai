@@ -53,7 +53,11 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
               handleSubmit(e);
             }
           }}
+<<<<<<< HEAD
           rows={1}
+=======
+          rows={Math.min(3, rowCount)}
+>>>>>>> 58df0509a426ab94c17d6568827ed5ce4310d130
           autoFocus
           id='prompt-input'
           placeholder={t('type_your_prompt')}

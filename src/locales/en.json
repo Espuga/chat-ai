@@ -15,6 +15,10 @@
   "login_no_ok": "There was an error while logging in.",
   "login_ok": "Login successful.",
   "register_ok": "Registration successful.",
+<<<<<<< HEAD
   "register_no_ok": "Registration failed. Please try again later.",
   "error_getting_chat_messages": "Error while getting the chat messages."
+=======
+  "register_no_ok": "Registration failed. Please try again later."
+>>>>>>> 58df0509a426ab94c17d6568827ed5ce4310d130
 } 
