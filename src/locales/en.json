@@ -1,10 +1,20 @@
 {
-    "hi": "Hi",
-    "type_your_prompt": "Type your prompt...",
-    "think": "Think",
-    "new_chat": "New Chat",
-    "what_can_i_help_with": "What can I help with?",
-    "documentation": "Documentation",
-    "login": "Log in",
-    "logout": "Logout"
+  "hi": "Hi",
+  "type_your_prompt": "Type your prompt...",
+  "think": "Think",
+  "new_chat": "New Chat",
+  "what_can_i_help_with": "What can I help with?",
+  "documentation": "Documentation",
+  "login": "Log in",
+  "logout": "Logout",
+  "register": "Register",
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "unauthorized": "Invalid username or password.",
+  "login_no_ok": "There was an error while logging in.",
+  "login_ok": "Login successful.",
+  "register_ok": "Registration successful.",
+  "register_no_ok": "Registration failed. Please try again later.",
+  "error_getting_chat_messages": "Error while getting the chat messages."
 } 

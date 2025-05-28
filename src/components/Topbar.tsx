@@ -1,10 +1,10 @@
-import { User, Languages, Check, LogOut, LogIn } from "lucide-react";
+import { User, Languages, Check, LogOut, LogIn, UserRoundPlus } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import { useState } from "react";
 import { useSessionStore } from "../stores/sessionStore";
 import Login from "./Login";
-// import Login from "./Login";
+import Register from "./Register";
 
 const languages = [
   { code: "en", label: "English" },
@@ -18,6 +18,7 @@ export default function Topbar() {
   const currentLang = i18n.language;
   const [showSessionMenu, setShowSessionMenu] = useState(false);
   const [showLogin, setLogin] = useState(false);
+  const [showRegister, setRegister] = useState(false);
 
   const changeLanguage = (lang: string): void => {
     i18n.changeLanguage(lang);
@@ -38,6 +39,11 @@ export default function Topbar() {
     setLogin(!showLogin);
   }
 
+  const handleRegister = (): void => {
+    setShowSessionMenu(false);
+    setRegister(!showRegister);
+  }
+
   return (
     <header className="p-4 flex flex-row justify-between border-b-1 border-gray-200">
       <div className="flex flex-row gap-2 items-center">
@@ -47,7 +53,7 @@ export default function Topbar() {
       <div className="flex flex-row gap-2 items-center">
         {user && (
           <p className="text-xl">
-            {t('hi')} {user.name || user.email}!
+            {t('hi')} {user.name}!
           </p>
         )}
         
@@ -71,15 +77,26 @@ export default function Topbar() {
                   </div>
                 </button>
               ) : (
-                <button
-                  onClick={handleLogin}
-                  className="w-full pl-2 pr-4 py-2 text-left hover:bg-gray-100 cursor-pointer flex justify-between items-center"
-                >
-                  <div className="flex flex-row gap-2">
-                    <LogIn size={24} />
-                    {t('login')}
-                  </div>
-                </button>
+                <>
+                  <button
+                    onClick={handleLogin}
+                    className="w-full pl-2 pr-4 py-2 text-left hover:bg-gray-100 cursor-pointer flex justify-between items-center"
+                  >
+                    <div className="flex flex-row gap-2">
+                      <LogIn size={24} />
+                      {t('login')}
+                    </div>
+                  </button>
+                  <button
+                    onClick={handleRegister}
+                    className="w-full pl-2 pr-4 py-2 text-left hover:bg-gray-100 cursor-pointer flex justify-between items-center"
+                  >
+                    <div className="flex flex-row gap-2">
+                      <UserRoundPlus size={24} />
+                      {t('register')}
+                    </div>
+                  </button>
+                </>
               )}
             </div>
           )}
@@ -115,7 +132,8 @@ export default function Topbar() {
         </div>
 
       </div>
-      {showLogin ? <Login /> : null}
+      {showLogin ? <Login onClose={() => setLogin(false)} /> : null}
+      {showRegister ? <Register onClose={() => setRegister(false)} /> : null}
     </header>
   );
 }

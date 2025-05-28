@@ -1,34 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import InputChat from '../components/InputChat';
 import ChatMessage from '../components/ChatMessage';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { toast } from 'sonner';
+
+interface Message {
+  _id: string;
+  chat_id: string;
+  role: string;
+  message: string;
+}
 
 const ChatPage: React.FC = () => {
   const { t } = useTranslation();
   const { chat_id } = useParams();
 
-  const [messages, setMessages] = useState([
-    {
-      message_id: "message_id_1",
-      content: "Message 1",
-      role: "user"
-    },
-    {
-      message_id: "message_id_2",
-      content: "Message 2",
-      role: "assistant"
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const handleNewMessage = (newContent: string) => {
-    const newMessage = {
-      message_id: crypto.randomUUID(),
-      content: newContent,
-      role: 'user'
+    const newMessage: Message = {
+      _id: crypto.randomUUID(),
+      chat_id: chat_id || '',
+      role: 'user',
+      message: newContent
     };
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages([...messages, newMessage])
   };
+
+  const loadMessages = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/chat/${chat_id}/messages`);
+      setMessages(res.data);
+    } catch (err) {
+      toast.error(t('error_getting_chat_messages'))
+    }
+  }
+
+  useEffect(() => {
+    if(chat_id) {
+      loadMessages();
+    }
+  }, [chat_id])
 
   return (
   <>
@@ -37,9 +51,9 @@ const ChatPage: React.FC = () => {
         <div className='mx-62'>
           {messages.map((message) => (
             <ChatMessage
-              key={message.message_id}
-              message_id={message.message_id}
-              content={message.content}
+              key={message._id}
+              message_id={message._id}
+              content={message.message}
               role={message.role}
             />
           ))}

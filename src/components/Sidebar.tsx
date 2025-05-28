@@ -2,20 +2,35 @@ import { NavLink } from 'react-router-dom';
 import { SquarePen } from 'lucide-react';
 import ChatOption from './ChatOption';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { toast } from 'sonner';
+import axios from 'axios';
 
-const chats = [
-  {
-    chat_id: "chat_id_1",
-    chat_name: "Chat Name 1"
-  },
-  {
-    chat_id: "chat_id_2",
-    chat_name: "Another Chat"
-  }
-]
+interface Chat {
+  _id: string;
+  description: string;
+}
 
 export default function Sidebar() {
   const {t} = useTranslation();
+  const [chats, setChats] = useState<Chat[]>([]);
+  
+
+  const loadChats = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/chat/`);
+      setChats(res.data);
+    } catch (err) {
+      toast.error(t('error_getting_chat_messages'))
+    }
+  }
+
+  useEffect(() => {
+    if(Cookies.get('token')) {
+      loadChats();
+    }
+  }, [])
 
   return (
     <nav className="w-60 p-4 pt-3 border-r-1 border-gray-200 h-full">
@@ -23,6 +38,7 @@ export default function Sidebar() {
         <li>
           <NavLink 
             to="/chat"
+            end
             className={({ isActive }) => 
               `flex gap-2 ${
                 isActive
@@ -37,8 +53,8 @@ export default function Sidebar() {
         </li>
         <hr className="border-gray-200 my-2"/>
         {chats.map(chat => (
-          <li key={chat.chat_id}>
-            <ChatOption chat_id={chat.chat_id} chat_name={chat.chat_name} />
+          <li key={chat._id}>
+            <ChatOption chat_id={chat._id} chat_description={chat.description} />
           </li>
         ))}
       </ul>
