@@ -16,15 +16,9 @@ export default function Register({ onClose }: RegisterProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-<<<<<<< HEAD
   const register = async () => {
     try {
       await sessionStore.register(name, email, password);
-=======
-  const register = () => {
-    try {
-      sessionStore.register(name, email, password);
->>>>>>> 58df0509a426ab94c17d6568827ed5ce4310d130
       toast.success(t('register_ok'));
       onClose();
     } catch (err) {

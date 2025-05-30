@@ -23,10 +23,6 @@ export const useSessionStore = create<SessionState>((set) => ({
   login: async (email, password) => {
     const obj = { email, password };
     const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`, obj);
-<<<<<<< HEAD
-
-=======
->>>>>>> 58df0509a426ab94c17d6568827ed5ce4310d130
     set({ user: res.data });
 
     Cookies.set('token', res.data.token, { expires: 7 });
@@ -57,12 +53,11 @@ export const useSessionStore = create<SessionState>((set) => ({
       });
       set({ user: res.data });
     } catch (err) {
-      console.error('Failed to fetch user info:', err);
-<<<<<<< HEAD
-      // Cookies.remove('token');
-=======
-      Cookies.remove('token');
->>>>>>> 58df0509a426ab94c17d6568827ed5ce4310d130
+      if(axios.isAxiosError(err) && err.response?.status === 401) {
+        Cookies.remove('token');
+      } else {
+        console.error('Failed to fetch user info:', err);
+      }
       set({ user: null });
     }
   }

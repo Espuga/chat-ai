@@ -16,15 +16,9 @@ export default function Login({ onClose }: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-<<<<<<< HEAD
   const login = async () => {
     try {
       await sessionStore.login(email, password);
-=======
-  const login = () => {
-    try {
-      sessionStore.login(email, password);
->>>>>>> 58df0509a426ab94c17d6568827ed5ce4310d130
       toast.success(t('login_ok'));
       onClose();
     } catch (err) {

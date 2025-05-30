@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 interface InputChatProps {
   onSend: (message: string) => void;
+  disabled?: boolean;
   className?: string;
 }
 
-const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
+const InputChat: React.FC<InputChatProps> = ({ onSend, disabled=false, className }) => {
   const {t} = useTranslation();
   const [message, setMessage] = useState('');
   const [isThinking, setIsThinking] = useState(false);
@@ -48,16 +49,12 @@ const InputChat: React.FC<InputChatProps> = ({ onSend, className }) => {
             setMessage(e.target.value);
           }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
+            if (e.key === 'Enter' && !e.shiftKey && disabled==false) {
               e.preventDefault();
               handleSubmit(e);
             }
           }}
-<<<<<<< HEAD
           rows={1}
-=======
-          rows={Math.min(3, rowCount)}
->>>>>>> 58df0509a426ab94c17d6568827ed5ce4310d130
           autoFocus
           id='prompt-input'
           placeholder={t('type_your_prompt')}

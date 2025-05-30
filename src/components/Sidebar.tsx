@@ -2,19 +2,15 @@ import { NavLink } from 'react-router-dom';
 import { SquarePen } from 'lucide-react';
 import ChatOption from './ChatOption';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { toast } from 'sonner';
 import axios from 'axios';
-
-interface Chat {
-  _id: string;
-  description: string;
-}
+import { useChatStore } from '../stores/chatStore';
 
 export default function Sidebar() {
   const {t} = useTranslation();
-  const [chats, setChats] = useState<Chat[]>([]);
+  const { chats, setChats } = useChatStore();
   
 
   const loadChats = async () => {
